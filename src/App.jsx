@@ -1,13 +1,20 @@
-import Sidebar from './components/Sidebar.jsx'
+import { useCallback, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
-const App = () => {
+import Sidebar from './components/Sidebar.jsx'
 
-  return ( 
+const App = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const closeSidebar = useCallback(() => setIsSidebarOpen(false), [])
+
+  return (
     <>
-      <Navbar />
-      <Sidebar />
+      <Navbar
+        isSidebarOpen={isSidebarOpen}
+        onMenuClick={() => setIsSidebarOpen((isOpen) => !isOpen)}
+      />
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
     </>
-   );
+  )
 }
- 
-export default App;
+
+export default App

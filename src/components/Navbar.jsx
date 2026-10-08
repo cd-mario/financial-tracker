@@ -1,11 +1,14 @@
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, onMenuClick }) => {
   return (
     <nav className="flex items-center justify-start">
       <div className="group relative inline-flex flex-col items-center">
         <button
           type="button"
-          aria-label="Open navigation menu"
-          className="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border border-white bg-transparent p-2 text-current transition-colors hover:bg-white/15"
+          aria-label={isSidebarOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-controls="app-sidebar"
+          aria-expanded={isSidebarOpen}
+          onClick={onMenuClick}
+          className="inline-flex size-8 cursor-pointer items-center justify-center rounded-md border border-white/50 bg-transparent p-2 text-current transition-colors hover:bg-white/13"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
